@@ -3,7 +3,7 @@
 //  UpYunSDKTests
 //
 //  Created by andy yao on 12-6-15.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012年 upyun.com. All rights reserved.
 //
 
 #import <SenTestingKit/SenTestingKit.h>

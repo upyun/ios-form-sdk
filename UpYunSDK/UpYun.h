@@ -3,7 +3,7 @@
 //  upyundemo
 //
 //  Created by andy yao on 12-6-14.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012年 upyun.com. All rights reserved.
 //
 
 //￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼功能介绍:
@@ -103,6 +103,7 @@
 
 - (void)upYunReceivedResponseHeaders:(id)responseHeaders;
 
+// 返回上传进度
 - (void)upYun:(UpYun *)upYun requestDidSendBytes:(long long)bytes progress:(float)progress;
 
 @end
