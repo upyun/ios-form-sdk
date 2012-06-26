@@ -112,26 +112,8 @@
     NSString *bucket;
     
     NSTimeInterval expiresIn;
-    
-    NSString *returnUrl;
-    
-    NSString *notifyUrl;
-    
-    NSString *contentType;
-    
-    NSString *allowFileType;
-    
-    float contentMinLength;
-    
-    float contentMaxLength;
-    
-    float imageMinWidth;
-    
-    float imageMaxWidth;
-    
-    float imageMinHeight;
-    
-    float imageMaxHeight;
+
+    NSMutableDictionary *params;
     
     NSString *passcode;
     
@@ -142,25 +124,7 @@
 
 @property (nonatomic, assign) NSTimeInterval expiresIn;
 
-@property (nonatomic, retain) NSString *returnUrl;
-
-@property (nonatomic, retain) NSString *notifyUrl;
-
-@property (nonatomic, retain) NSString *contentType;
-
-@property (nonatomic, retain) NSString *allowFileType;
-
-@property (nonatomic, assign) float contentMinLength;
-
-@property (nonatomic, assign) float contentMaxLength;
-
-@property (nonatomic, assign) float imageMinWidth;
-
-@property (nonatomic, assign) float imageMaxWidth;
-
-@property (nonatomic, assign) float imageMinHeight;
-
-@property (nonatomic, assign) float imageMaxHeight;
+@property (nonatomic, retain) NSMutableDictionary *params;
 
 @property (nonatomic, retain) NSString *passcode;
 

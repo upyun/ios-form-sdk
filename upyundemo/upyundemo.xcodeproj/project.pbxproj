@@ -16,11 +16,8 @@
 		41320F13158989500092B1B5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41320F12158989500092B1B5 /* ViewController.m */; };
 		41320F16158989500092B1B5 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41320F14158989500092B1B5 /* ViewController_iPhone.xib */; };
 		41320F19158989500092B1B5 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41320F17158989500092B1B5 /* ViewController_iPad.xib */; };
-		41320F21158989500092B1B5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41320F20158989500092B1B5 /* SenTestingKit.framework */; };
 		41320F22158989500092B1B5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41320EFF158989500092B1B5 /* UIKit.framework */; };
 		41320F23158989500092B1B5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41320F01158989500092B1B5 /* Foundation.framework */; };
-		41320F2B158989500092B1B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41320F29158989500092B1B5 /* InfoPlist.strings */; };
-		41320F2E158989500092B1B5 /* upyundemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 41320F2D158989500092B1B5 /* upyundemoTests.m */; };
 		41320F7015898BBF0092B1B5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41320F6F15898BBF0092B1B5 /* CFNetwork.framework */; };
 		41320F7215898BCA0092B1B5 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41320F7115898BCA0092B1B5 /* libz.1.2.5.dylib */; };
 		41320F7415898BD50092B1B5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41320F7315898BD40092B1B5 /* MobileCoreServices.framework */; };
@@ -76,11 +73,6 @@
 		41320F15158989500092B1B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		41320F18158989500092B1B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		41320F1F158989500092B1B5 /* upyundemoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = upyundemoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		41320F20158989500092B1B5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		41320F28158989500092B1B5 /* upyundemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "upyundemoTests-Info.plist"; sourceTree = "<group>"; };
-		41320F2A158989500092B1B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		41320F2C158989500092B1B5 /* upyundemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = upyundemoTests.h; sourceTree = "<group>"; };
-		41320F2D158989500092B1B5 /* upyundemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = upyundemoTests.m; sourceTree = "<group>"; };
 		41320F6F15898BBF0092B1B5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		41320F7115898BCA0092B1B5 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		41320F7315898BD40092B1B5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -157,7 +149,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41320F21158989500092B1B5 /* SenTestingKit.framework in Frameworks */,
 				41320F22158989500092B1B5 /* UIKit.framework in Frameworks */,
 				41320F23158989500092B1B5 /* Foundation.framework in Frameworks */,
 			);
@@ -170,7 +161,6 @@
 			isa = PBXGroup;
 			children = (
 				41320F05158989500092B1B5 /* upyundemo */,
-				41320F26158989500092B1B5 /* upyundemoTests */,
 				41320EFE158989500092B1B5 /* Frameworks */,
 				41320EFC158989500092B1B5 /* Products */,
 			);
@@ -195,7 +185,6 @@
 				41320EFF158989500092B1B5 /* UIKit.framework */,
 				41320F01158989500092B1B5 /* Foundation.framework */,
 				41320F03158989500092B1B5 /* CoreGraphics.framework */,
-				41320F20158989500092B1B5 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -223,25 +212,6 @@
 				41320F08158989500092B1B5 /* InfoPlist.strings */,
 				41320F0B158989500092B1B5 /* main.m */,
 				41320F0D158989500092B1B5 /* upyundemo-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		41320F26158989500092B1B5 /* upyundemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				41320F2C158989500092B1B5 /* upyundemoTests.h */,
-				41320F2D158989500092B1B5 /* upyundemoTests.m */,
-				41320F27158989500092B1B5 /* Supporting Files */,
-			);
-			path = upyundemoTests;
-			sourceTree = "<group>";
-		};
-		41320F27158989500092B1B5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				41320F28158989500092B1B5 /* upyundemoTests-Info.plist */,
-				41320F29158989500092B1B5 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -425,7 +395,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41320F2B158989500092B1B5 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,7 +453,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41320F2E158989500092B1B5 /* upyundemoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,14 +489,6 @@
 				41320F18158989500092B1B5 /* en */,
 			);
 			name = ViewController_iPad.xib;
-			sourceTree = "<group>";
-		};
-		41320F29158989500092B1B5 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				41320F2A158989500092B1B5 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

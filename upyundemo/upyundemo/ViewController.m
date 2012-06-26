@@ -62,6 +62,10 @@
     uy.expiresIn = 100;
     uy.bucket = @"andyyao";
     uy.passcode = @"Qdky/Iai0eF5D99q/i/GEOSd4hU=";
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    [params setObject:@"0,1000" forKey:@"content-length-range"];
+//    [params setObject:@"png" forKey:@"allow-file-type"];
+    uy.params = params;
     NSDate *d = [NSDate date];
     NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
     NSString* img = [resourcePath stringByAppendingPathComponent:@"LInKb.jpg"];

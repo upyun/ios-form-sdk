@@ -21,16 +21,7 @@
 @synthesize 
 bucket,
 expiresIn,
-returnUrl,
-notifyUrl,
-contentType,
-allowFileType,
-contentMinLength,
-contentMaxLength,
-imageMinWidth,
-imageMaxWidth,
-imageMinHeight,
-imageMaxHeight,
+params,
 passcode,
 delegate;
 
@@ -74,23 +65,8 @@ delegate;
     [dic setObject:self.bucket forKey:@"bucket"];
     [dic setObject:[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] + self.expiresIn] forKey:@"expiration"];
     [dic setObject:savekey forKey:@"save-key"];
-    if (self.allowFileType) {
-        [dic setObject:self.allowFileType forKey:@"allow-file-type"];
-    }
-    if (contentMaxLength > 0 && contentMinLength >= 0 && contentMaxLength >= contentMinLength) {
-        [dic setObject:[NSString stringWithFormat:@"%d,%d",contentMinLength,contentMaxLength] forKey:@"content-length-range"];
-    }
-    if (imageMaxWidth > 0 && imageMinWidth >= 0 && imageMaxWidth >= imageMinWidth) {
-        [dic setObject:[NSString stringWithFormat:@"%d,%d",imageMinWidth,imageMaxWidth] forKey:@"image-width-range"];
-    }
-    if (imageMaxHeight > 0 && imageMinHeight >= 0 && imageMaxHeight >= imageMinHeight) {
-        [dic setObject:[NSString stringWithFormat:@"%d,%d",imageMinHeight,imageMaxHeight] forKey:@"image-height-range"];
-    }
-    if (self.returnUrl) {
-        [dic setObject:self.returnUrl forKey:@"return-url"];
-    }
-    if (self.notifyUrl) {
-        [dic setObject:self.notifyUrl forKey:@"notify-url"];
+    for (NSString *key in self.params.keyEnumerator) {
+        [dic setObject:[self.params objectForKey:key] forKey:key];
     }
     NSString *json = [dic JSONRepresentation];
     return [json base64EncodedString];

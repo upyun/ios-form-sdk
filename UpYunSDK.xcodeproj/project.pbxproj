@@ -35,11 +35,8 @@
 		41BC38DB158C516A00684A8A /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 41BC38D7158C516A00684A8A /* ASINetworkQueue.h */; };
 		41BC38DC158C516A00684A8A /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BC38D8158C516A00684A8A /* ASINetworkQueue.m */; };
 		41CE1053158B3DFC00DEEC7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CE1052158B3DFC00DEEC7C /* Foundation.framework */; };
-		41CE1061158B3DFD00DEEC7C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CE1060158B3DFD00DEEC7C /* SenTestingKit.framework */; };
 		41CE1064158B3DFD00DEEC7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CE1052158B3DFC00DEEC7C /* Foundation.framework */; };
 		41CE1067158B3DFD00DEEC7C /* libUpYunSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CE104F158B3DFC00DEEC7C /* libUpYunSDK.a */; };
-		41CE106D158B3DFD00DEEC7C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41CE106B158B3DFD00DEEC7C /* InfoPlist.strings */; };
-		41CE1070158B3DFD00DEEC7C /* UpYunSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CE106F158B3DFD00DEEC7C /* UpYunSDKTests.m */; };
 		41CE107C158B3F4900DEEC7C /* UpYun.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CE107A158B3F4900DEEC7C /* UpYun.m */; };
 		41CE10D7158B3FC800DEEC7C /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CE10A7158B3FC800DEEC7C /* ASIFormDataRequest.m */; };
 		41CE10D8158B3FC800DEEC7C /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CE10A9158B3FC800DEEC7C /* ASIHTTPRequest.m */; };
@@ -87,11 +84,6 @@
 		41CE1052158B3DFC00DEEC7C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		41CE1056158B3DFC00DEEC7C /* UpYunSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UpYunSDK-Prefix.pch"; sourceTree = "<group>"; };
 		41CE105F158B3DFD00DEEC7C /* UpYunSDKTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UpYunSDKTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		41CE1060158B3DFD00DEEC7C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		41CE106A158B3DFD00DEEC7C /* UpYunSDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UpYunSDKTests-Info.plist"; sourceTree = "<group>"; };
-		41CE106C158B3DFD00DEEC7C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		41CE106E158B3DFD00DEEC7C /* UpYunSDKTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpYunSDKTests.h; sourceTree = "<group>"; };
-		41CE106F158B3DFD00DEEC7C /* UpYunSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpYunSDKTests.m; sourceTree = "<group>"; };
 		41CE107A158B3F4900DEEC7C /* UpYun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpYun.m; sourceTree = "<group>"; };
 		41CE10A6158B3FC800DEEC7C /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
 		41CE10A7158B3FC800DEEC7C /* ASIFormDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIFormDataRequest.m; sourceTree = "<group>"; };
@@ -158,7 +150,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41CE1061158B3DFD00DEEC7C /* SenTestingKit.framework in Frameworks */,
 				41CE1064158B3DFD00DEEC7C /* Foundation.framework in Frameworks */,
 				41CE1067158B3DFD00DEEC7C /* libUpYunSDK.a in Frameworks */,
 			);
@@ -171,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				41CE1054158B3DFC00DEEC7C /* UpYunSDK */,
-				41CE1068158B3DFD00DEEC7C /* UpYunSDKTests */,
 				41CE1051158B3DFC00DEEC7C /* Frameworks */,
 				41CE1050158B3DFC00DEEC7C /* Products */,
 			);
@@ -194,7 +184,6 @@
 				41BC38AD158C472500684A8A /* CFNetwork.framework */,
 				41BC38AB158C470C00684A8A /* libz.1.2.5.dylib */,
 				41CE1052158B3DFC00DEEC7C /* Foundation.framework */,
-				41CE1060158B3DFD00DEEC7C /* SenTestingKit.framework */,
 				41CE10EB158B403D00DEEC7C /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -218,25 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				41CE1056158B3DFC00DEEC7C /* UpYunSDK-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		41CE1068158B3DFD00DEEC7C /* UpYunSDKTests */ = {
-			isa = PBXGroup;
-			children = (
-				41CE106E158B3DFD00DEEC7C /* UpYunSDKTests.h */,
-				41CE106F158B3DFD00DEEC7C /* UpYunSDKTests.m */,
-				41CE1069158B3DFD00DEEC7C /* Supporting Files */,
-			);
-			path = UpYunSDKTests;
-			sourceTree = "<group>";
-		};
-		41CE1069158B3DFD00DEEC7C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				41CE106A158B3DFD00DEEC7C /* UpYunSDKTests-Info.plist */,
-				41CE106B158B3DFD00DEEC7C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -399,7 +369,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41CE106D158B3DFD00DEEC7C /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,7 +424,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41CE1070158B3DFD00DEEC7C /* UpYunSDKTests.m in Sources */,
 				41CE10D7158B3FC800DEEC7C /* ASIFormDataRequest.m in Sources */,
 				41CE10D8158B3FC800DEEC7C /* ASIHTTPRequest.m in Sources */,
 				41CE10D9158B3FC800DEEC7C /* ASIInputStream.m in Sources */,
@@ -487,17 +455,6 @@
 			targetProxy = 41CE1065158B3DFD00DEEC7C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		41CE106B158B3DFD00DEEC7C /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				41CE106C158B3DFD00DEEC7C /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		41CE1071158B3DFD00DEEC7C /* Debug */ = {
