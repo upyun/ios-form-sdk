@@ -60,8 +60,8 @@
     UpYun *uy = [[UpYun alloc] init];
     uy.delegate = self;
     uy.expiresIn = 100;
-    uy.bucket = @"andyyao";
-    uy.passcode = @"Qdky/Iai0eF5D99q/i/GEOSd4hU=";
+    uy.bucket = @"此处填空间名";
+    uy.passcode = @"此处填密钥";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 //    [params setObject:@"0,1000" forKey:@"content-length-range"];
 //    [params setObject:@"png" forKey:@"allow-file-type"];
