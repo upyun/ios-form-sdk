@@ -72,6 +72,7 @@
     
     /**
      *	@brief	上传方式2: 通过文件数据上传
+     *  (该方式搭配“allow-file-type”参数使用时可能会上传失败)
      */
 //    [uy uploadImageData:UIImageJPEGRepresentation([UIImage imageWithContentsOfFile:img], 1.0) savekey:[self getSaveKey]];
 }
