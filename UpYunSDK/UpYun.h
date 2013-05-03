@@ -97,14 +97,40 @@
 
 @optional
 
+/**
+ *	@brief	请求成功返回
+ *
+ *	@param 	upYun 	返回UpYun实例
+ *	@param 	result 	成功返回服务器结果
+ */
 - (void)upYun:(UpYun *)upYun requestDidSucceedWithResult:(id)result;
 
+
+/**
+ *	@brief	请求失败返回
+ *
+ *	@param 	upYun 	返回UpYun实例
+ *	@param 	error 	失败返回错误
+ */
 - (void)upYun:(UpYun *)upYun requestDidFailWithError:(NSError *)error;
 
+
+/**
+ *	@brief	请求响应头
+ *
+ *	@param 	responseHeaders 	请求响应头
+ */
 - (void)upYunReceivedResponseHeaders:(id)responseHeaders;
 
-// 返回上传进度
+/**
+ *	@brief	上传进度返回
+ *
+ *	@param 	upYun 	返回UpYun实例
+ *	@param 	bytes 	已发送数
+ *	@param 	progress 	进度
+ */
 - (void)upYun:(UpYun *)upYun requestDidSendBytes:(long long)bytes progress:(float)progress;
+
 
 @end
 
@@ -130,9 +156,29 @@
 
 @property (nonatomic, assign) id<UpYunDelegate> delegate;
 
+/**
+ *	@brief	上传图片接口
+ *
+ *	@param 	image 	图片
+ *	@param 	savekey 	savekey
+ */
 - (void) uploadImage:(UIImage *)image savekey:(NSString *)savekey;
 
+/**
+ *	@brief	上传图片接口
+ *
+ *	@param 	path 	图片path
+ *	@param 	savekey 	savekey
+ */
 - (void) uploadImagePath:(NSString *)path savekey:(NSString *)savekey;
 
+
+/**
+ *	@brief	上传图片接口
+ *
+ *	@param 	data 	图片data
+ *	@param 	savekey 	savekey
+ */
 - (void) uploadImageData:(NSData *)data savekey:(NSString *)savekey;
+
 @end

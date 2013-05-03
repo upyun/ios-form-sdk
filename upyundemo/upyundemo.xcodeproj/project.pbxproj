@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		405FF06F173390C800DF2BF4 /* a.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 405FF06E173390C800DF2BF4 /* a.jpg */; };
 		41320F00158989500092B1B5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41320EFF158989500092B1B5 /* UIKit.framework */; };
 		41320F02158989500092B1B5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41320F01158989500092B1B5 /* Foundation.framework */; };
 		41320F04158989500092B1B5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41320F03158989500092B1B5 /* CoreGraphics.framework */; };
@@ -44,7 +45,6 @@
 		41BC392F158C520800684A8A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BC3915158C520800684A8A /* SBJsonWriter.m */; };
 		41BC3930158C520800684A8A /* UpYun.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BC3917158C520800684A8A /* UpYun.m */; };
 		41BC3931158C520800684A8A /* WBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BC391B158C520800684A8A /* WBUtil.m */; };
-		41CE0FFB158B3B0600DEEC7C /* LInKb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41CE0FFA158B3B0600DEEC7C /* LInKb.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		405FF06E173390C800DF2BF4 /* a.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a.jpg; sourceTree = "<group>"; };
 		41320EFB158989500092B1B5 /* upyundemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = upyundemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41320EFF158989500092B1B5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		41320F01158989500092B1B5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -127,7 +128,6 @@
 		41BC3918158C520800684A8A /* UpYunSDK-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UpYunSDK-Prefix.pch"; sourceTree = "<group>"; };
 		41BC391A158C520800684A8A /* WBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBUtil.h; sourceTree = "<group>"; };
 		41BC391B158C520800684A8A /* WBUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBUtil.m; sourceTree = "<group>"; };
-		41CE0FFA158B3B0600DEEC7C /* LInKb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LInKb.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,7 +219,7 @@
 		41320F7B15898EE60092B1B5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				41CE0FFA158B3B0600DEEC7C /* LInKb.jpg */,
+				405FF06E173390C800DF2BF4 /* a.jpg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -387,7 +387,7 @@
 				41320F0A158989500092B1B5 /* InfoPlist.strings in Resources */,
 				41320F16158989500092B1B5 /* ViewController_iPhone.xib in Resources */,
 				41320F19158989500092B1B5 /* ViewController_iPad.xib in Resources */,
-				41CE0FFB158B3B0600DEEC7C /* LInKb.jpg in Resources */,
+				405FF06F173390C800DF2BF4 /* a.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

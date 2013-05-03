@@ -31,6 +31,7 @@ delegate;
 }
 
 - (void) uploadImagePath:(NSString *)path savekey:(NSString *)savekey {
+
     NSString *policy = [self policy:savekey];
     NSString *str = [NSString stringWithFormat:@"%@&%@",policy,self.passcode];
     NSString *signature = [[str MD5EncodedString] lowercaseString];
@@ -63,14 +64,17 @@ delegate;
 - (NSString *)policy:(NSString *)savekey {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:self.bucket forKey:@"bucket"];
-    [dic setObject:[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] + self.expiresIn] forKey:@"expiration"];
+    [dic setObject:[NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + self.expiresIn] forKey:@"expiration"];
     [dic setObject:savekey forKey:@"save-key"];
-    for (NSString *key in self.params.keyEnumerator) {
-        [dic setObject:[self.params objectForKey:key] forKey:key];
+    if (self.params) {
+        for (NSString *key in self.params.keyEnumerator) {
+            [dic setObject:[self.params objectForKey:key] forKey:key];
+        }
     }
     NSString *json = [dic JSONRepresentation];
     return [json base64EncodedString];
 }
+
 
 
 - (void)requestFinished:(ASIHTTPRequest *)request {

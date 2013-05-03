@@ -9,6 +9,23 @@
 #import "ViewController.h"
 #import "UpYun.h"
 
+/**
+ *	@brief 操作员（必填项）
+ */
+#error 必填项
+#define BUCKET @"bucket"
+
+/**
+ *	@brief	表单API功能密钥 （必填项）
+ */
+#error 必填项
+#define PASSCODE @"passcode"
+
+/**
+ *	@brief	当前上传授权的过期时间，单位为“秒” （必填项，较大文件需要较长时间)
+ */
+//#error 必填项
+#define EXPIRES_IN 600
 @interface ViewController ()
 
 @end
@@ -36,13 +53,50 @@
     }
 }
 
+- (IBAction)uploadImage:(id)sender {
+    UpYun *uy = [[UpYun alloc] init];
+    uy.delegate = self;
+    uy.expiresIn = EXPIRES_IN;
+    uy.bucket = BUCKET;
+    uy.passcode = PASSCODE;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    uy.params = params;
+    NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+    NSString* img = [resourcePath stringByAppendingPathComponent:@"a.jpg"];
+    [uy uploadImagePath:img savekey:[self getSaveKey]];
+//    [uy uploadImageData:UIImageJPEGRepresentation([UIImage imageWithContentsOfFile:img], 1.0) savekey:[self getSaveKey]];
+}
+
+/**
+ *	@brief	拼装saveKey
+ *
+ *	@return	saveKey
+ */
+-(NSString * )getSaveKey {
+    
+    /**
+     *	@brief	方式1 由开发者生成saveKey
+     */
+    NSDate *d = [NSDate date];
+    return [NSString stringWithFormat:@"/%d/%d/%.0f.jpg",[self getYear:d],[self getMonth:d],[[NSDate date] timeIntervalSince1970]];
+    
+    /**
+     *	@brief	方式2 由服务器生成saveKey
+     */
+//    return [NSString stringWithFormat:@"/{year}/{mon}/{filename}{.suffix}"];
+    
+    /**
+     *	@brief	更多方式 参阅 http://wiki.upyun.com/index.php?title=Policy_%E5%86%85%E5%AE%B9%E8%AF%A6%E8%A7%A3
+     */
+}
+
 - (int)getYear:(NSDate *) date{
     NSDateFormatter *formatter =[[[NSDateFormatter alloc] init] autorelease];
     [formatter setTimeStyle:NSDateFormatterMediumStyle];
     NSCalendar *calendar = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
     NSInteger unitFlags = NSYearCalendarUnit;
     NSDateComponents *comps = [calendar components:unitFlags fromDate:date];
-    int year=[comps year]; 
+    int year=[comps year];
     return year;
 }
 
@@ -56,24 +110,9 @@
     return month;
 }
 
-- (IBAction)uploadImage:(id)sender {
-    UpYun *uy = [[UpYun alloc] init];
-    uy.delegate = self;
-    uy.expiresIn = 100;
-    uy.bucket = @"此处填空间名";
-    uy.passcode = @"此处填密钥";
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    [params setObject:@"0,1000" forKey:@"content-length-range"];
-//    [params setObject:@"png" forKey:@"allow-file-type"];
-    uy.params = params;
-    NSDate *d = [NSDate date];
-    NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
-    NSString* img = [resourcePath stringByAppendingPathComponent:@"LInKb.jpg"];
-    [uy uploadImagePath:img savekey:[NSString stringWithFormat:@"/%d/%d/%.0f.jpg",[self getYear:d],[self getMonth:d],[[NSDate date] timeIntervalSince1970]]];
-//    [uy uploadImage:self.image.image savekey:[NSString stringWithFormat:@"/%d/%d/%f.jpg",[self getYear:d],[self getMonth:d],[[NSDate date] timeIntervalSince1970]]];
-}
 
 - (void)upYun:(UpYun *)upYun requestDidFailWithError:(NSError *)error {
+    NSLog(@"%@",error);
     NSString *string = [error.userInfo objectForKey:@"message"];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:string 
                                                     message:nil 
@@ -101,4 +140,6 @@
 - (void)upYunReceivedResponseHeaders:(id)responseHeaders {
     
 }
+
+
 @end
