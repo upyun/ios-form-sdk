@@ -85,7 +85,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">a.jpg</string>
+							<string key="NSResourceName">image.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIProgressView" id="679427322">
@@ -260,7 +260,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">a.jpg</string>
+			<string key="NS.key.0">image.jpg</string>
 			<string key="NS.object.0">{100, 66}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>

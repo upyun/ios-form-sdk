@@ -13,13 +13,13 @@
  *	@brief 操作员（必填项）
  */
 #error 必填项
-#define BUCKET @"bucket"
+#define BUCKET @""
 
 /**
  *	@brief	表单API功能密钥 （必填项）
  */
-#error 必填项
-#define PASSCODE @"passcode"
+#error 必填项 
+#define PASSCODE @""
 
 /**
  *	@brief	当前上传授权的过期时间，单位为“秒” （必填项，较大文件需要较长时间)
@@ -61,9 +61,18 @@
     uy.passcode = PASSCODE;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     uy.params = params;
+    
+    
+    /**
+     *	@brief	上传方式1: 通过文件路径上传
+     */
     NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
-    NSString* img = [resourcePath stringByAppendingPathComponent:@"a.jpg"];
+    NSString* img = [resourcePath stringByAppendingPathComponent:@"image.jpg"];
     [uy uploadImagePath:img savekey:[self getSaveKey]];
+    
+    /**
+     *	@brief	上传方式2: 通过文件数据上传
+     */
 //    [uy uploadImageData:UIImageJPEGRepresentation([UIImage imageWithContentsOfFile:img], 1.0) savekey:[self getSaveKey]];
 }
 

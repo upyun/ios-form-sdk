@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		405FF06F173390C800DF2BF4 /* a.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 405FF06E173390C800DF2BF4 /* a.jpg */; };
+		405FF06F173390C800DF2BF4 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 405FF06E173390C800DF2BF4 /* image.jpg */; };
 		41320F00158989500092B1B5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41320EFF158989500092B1B5 /* UIKit.framework */; };
 		41320F02158989500092B1B5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41320F01158989500092B1B5 /* Foundation.framework */; };
 		41320F04158989500092B1B5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41320F03158989500092B1B5 /* CoreGraphics.framework */; };
@@ -58,7 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		405FF06E173390C800DF2BF4 /* a.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a.jpg; sourceTree = "<group>"; };
+		405FF06E173390C800DF2BF4 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		41320EFB158989500092B1B5 /* upyundemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = upyundemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41320EFF158989500092B1B5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		41320F01158989500092B1B5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -219,7 +219,7 @@
 		41320F7B15898EE60092B1B5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				405FF06E173390C800DF2BF4 /* a.jpg */,
+				405FF06E173390C800DF2BF4 /* image.jpg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -387,7 +387,7 @@
 				41320F0A158989500092B1B5 /* InfoPlist.strings in Resources */,
 				41320F16158989500092B1B5 /* ViewController_iPhone.xib in Resources */,
 				41320F19158989500092B1B5 /* ViewController_iPad.xib in Resources */,
-				405FF06F173390C800DF2BF4 /* a.jpg in Resources */,
+				405FF06F173390C800DF2BF4 /* image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
