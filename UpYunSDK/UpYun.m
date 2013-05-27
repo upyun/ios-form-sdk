@@ -8,9 +8,8 @@
 
 #import "UpYun.h"
 #import "WBUtil.h"
-#import "SBJson.h"
 #import "ASIFormDataRequest.h"
-
+#import "JSONKit.h"
 @interface UpYun() {
     long long totalbytes;
 }
@@ -35,6 +34,7 @@ delegate;
     NSString *policy = [self policy:savekey];
     NSString *str = [NSString stringWithFormat:@"%@&%@",policy,self.passcode];
     NSString *signature = [[str MD5EncodedString] lowercaseString];
+    NSLog(@"%@",signature);
     ASIFormDataRequest *adr = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@/",API_DOMAIN,self.bucket]]];
     [adr setPostFormat:ASIMultipartFormDataPostFormat];
     [adr addPostValue:policy forKey:@"policy"];
@@ -71,16 +71,17 @@ delegate;
             [dic setObject:[self.params objectForKey:key] forKey:key];
         }
     }
-    NSString *json = [dic JSONRepresentation];
+    NSString *json = [dic JSONString];
     return [json base64EncodedString];
 }
 
 
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
-    SBJsonParser *p = [[SBJsonParser alloc] init];
-    NSDictionary *dic = [p objectWithString:request.responseString];
-    [p release];
+    NSString * dataString = request.responseString;
+    JSONDecoder *jd=[[JSONDecoder alloc] init];
+    NSDictionary *dic = [jd objectWithUTF8String:(const unsigned char *)[dataString UTF8String] length:(unsigned int)[dataString length]];
+    [jd release];
     NSString *message = [dic objectForKey:@"message"];
     if ([@"ok" isEqualToString:message]) {
         if ([delegate respondsToSelector:@selector(upYun:requestDidSendBytes:progress:)]) {

@@ -10,7 +10,7 @@
 #import "UpYun.h"
 
 /**
- *	@brief 操作员（必填项）
+ *	@brief 空间名（必填项）
  */
 #error 必填项
 #define BUCKET @""
