@@ -10,6 +10,10 @@
 #define ERROR_DOMAIN @"upyun.com"
 #define DATE_STRING(expiresIn) [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + expiresIn]
 #define REQUEST_URL(bucket) [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/",API_DOMAIN,bucket]]
+#define CREAT_SAVE_KEY_BY_SERVER_WITH_TIME @"/{year}{mon}{day}{hour}{min}{sec}"
+#define CREAT_SAVE_KEY_BY_SERVER_WITH_MD5 @"/{filemd5}"
+#define CREAT_SAVE_KEY_BY_SERVER_WITH_RANDOM @"/{random}{random32}"
+#define CREAT_SAVE_KEY_BY_SERVER_WITH_FILENAME @"/{year}/{mon}/{filename}{.suffix}"
 @implementation UpYun
 -(id)init
 {
@@ -19,6 +23,23 @@
         self.passcode = DEFAULT_PASSCODE;
 	}
 	return self;
+}
+
+-(BOOL)needActionCheckWithData:(id)data
+           saveKeyByServerType:(SaveKeyByServerType)saveKeyByServerType
+{
+    NSString * message = @"<SaveKeyByServerWithFileName>方式产生savekey,只支持file参数为文件path";
+    if(([data isKindOfClass:[UIImage class]] && saveKeyByServerType == SaveKeyByServerWithFileName) ||
+       ([data isKindOfClass:[NSData class]] && saveKeyByServerType == SaveKeyByServerWithFileName)){
+        NSError *err = [NSError errorWithDomain:ERROR_DOMAIN
+                                           code:-99999
+                                       userInfo:@{@"message":message}];
+        if (_failBlocker) {
+            _failBlocker(err);
+        }
+        return NO;
+    }
+    return YES;
 }
 
 - (void) uploadImage:(UIImage *)image savekey:(NSString *)savekey
@@ -42,6 +63,62 @@
     [operation start];
 }
 
+-(void)uploadFile:(id)file customSaveKey:(NSString *)customSaveKey
+{
+    if([file isKindOfClass:[UIImage class]]){
+        [self uploadImage:file savekey:customSaveKey];
+    }else if([file isKindOfClass:[NSData class]]) {
+        [self uploadImageData:file savekey:customSaveKey];
+    }else if([file isKindOfClass:[NSString class]]) {
+        [self uploadImagePath:file savekey:customSaveKey];
+    }else {
+        NSError *err = [NSError errorWithDomain:ERROR_DOMAIN
+                                           code:-99998
+                                       userInfo:@{@"message":@"传入参数类型错误"}];
+        if (_failBlocker) {
+            _failBlocker(err);
+        }
+    }
+}
+
+- (void)uploadFile:(id)file saveKeyByServerType:(SaveKeyByServerType)saveKeyByServerType
+{
+    if (![self needActionCheckWithData:file saveKeyByServerType:saveKeyByServerType]) {
+        return;
+    }
+    NSString * saveKey;
+    switch (saveKeyByServerType) {
+        case SaveKeyByServerWithFileName:
+            saveKey = CREAT_SAVE_KEY_BY_SERVER_WITH_FILENAME;
+            break;
+        case SaveKeyByServerWithMD5:
+            saveKey = CREAT_SAVE_KEY_BY_SERVER_WITH_MD5;
+            break;
+        case SaveKeyByServerWithRandom:
+            saveKey = CREAT_SAVE_KEY_BY_SERVER_WITH_RANDOM;
+            break;
+        case SaveKeyByServerWithTime:
+            saveKey = CREAT_SAVE_KEY_BY_SERVER_WITH_TIME;
+            break;
+        default:
+            break;
+    }
+    if([file isKindOfClass:[UIImage class]]){
+        [self uploadImage:file savekey:saveKey];
+    }else if([file isKindOfClass:[NSData class]]) {
+        [self uploadImageData:file savekey:saveKey];
+    }else if([file isKindOfClass:[NSString class]]) {
+        [self uploadImagePath:file savekey:saveKey];
+    }else {
+        NSError *err = [NSError errorWithDomain:ERROR_DOMAIN
+                                           code:-99998
+                                       userInfo:@{@"message":@"传入参数类型错误"}];
+        if (_failBlocker) {
+            _failBlocker(err);
+        }
+    }
+}
+
 - (NSString *)getPolicyWithSaveKey:(NSString *)savekey {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:self.bucket forKey:@"bucket"];
@@ -56,14 +133,14 @@
     return [json base64EncodedString];
 }
 
--(NSString *)getSignatureWithPolicy:(NSString *)policy
+- (NSString *)getSignatureWithPolicy:(NSString *)policy
 {
     NSString *str = [NSString stringWithFormat:@"%@&%@",policy,self.passcode];
     NSString *signature = [[[str dataUsingEncoding:NSUTF8StringEncoding] MD5HexDigest] lowercaseString];
     return signature;
 }
 
--(id <AFMultipartFormData>)setData:(id <AFMultipartFormData>)formData
+- (id <AFMultipartFormData>)setData:(id <AFMultipartFormData>)formData
                               data:(NSData *)data
                           filePath:(NSString *)filePath
 {
@@ -116,7 +193,7 @@
     return  request;
 }
 
--(AFHTTPRequestOperation *)creatOperationWithSaveKey:(NSString *)saveKey
+- (AFHTTPRequestOperation *)creatOperationWithSaveKey:(NSString *)saveKey
                                                 data:(NSData *)data
                                             filePath:(NSString *)filePath
 {

@@ -12,6 +12,7 @@
 #import "Base64.h"
 #import "NSData+MD5Digest.h"
 #import "AFNetworking.h"
+
 /**
  *	@brief 默认空间名（必填项），可在init之后修改bucket的值来更改
  */
@@ -37,6 +38,14 @@ typedef void(^SUCCESS_BLOCK)(id result);
 typedef void(^FAIL_BLOCK)(NSError * error);
 typedef void(^PROGRESS_BLOCK)(CGFloat percent,long long requestDidSendBytes);
 
+typedef enum
+{
+    SaveKeyByServerWithTime,//   由 服务器 根据时间 生成savekey
+    SaveKeyByServerWithMD5,//    由 服务器 根据上传文件MD5值 生成savekey
+    SaveKeyByServerWithRandom,// 由 服务器 生成随机值 生成savekey
+    SaveKeyByServerWithFileName//由 服务器 根据文件名 生成savekey
+}SaveKeyByServerType;
+
 @interface UpYun : NSObject
 
 @property (nonatomic, copy) NSString *bucket;
@@ -52,6 +61,34 @@ typedef void(^PROGRESS_BLOCK)(CGFloat percent,long long requestDidSendBytes);
 @property (nonatomic, copy) FAIL_BLOCK      failBlocker;
 
 @property (nonatomic, copy) PROGRESS_BLOCK  progressBlocker;
+
+@property (nonatomic, unsafe_unretained)SaveKeyByServerType autoSaveKeyType;
+
+/**********************/
+/**以下新增接口 建议使用**/
+/**
+ *	@brief	上传文件
+ *
+ *	@param 	file 	文件信息 可用值：UIImage、NSData、NSString(文件路径)
+ *
+ *  @tag    当传入 file 类型 为UIImage或者NSData时 SaveKeyByServerType 中的 SaveKeyByServerWithFileName不可用
+ *
+ *	@param 	saveKeyByServerType 	由服务器生成savekey的方式
+ */
+-(void)uploadFile:(id)file saveKeyByServerType:(SaveKeyByServerType)saveKeyByServerType;
+
+/**
+ *	@brief	上传文件
+ *
+ *	@param 	file 	文件信息 可用值：UIImage、NSData、NSString(文件路径)
+ *	@param 	customSaveKey 	由开发者自定义的saveKey
+ */
+-(void)uploadFile:(id)file customSaveKey:(NSString *)customSaveKey;
+
+/**以上新增接口 建议使用**/
+/**********************/              
+
+
 /**
  *	@brief	上传图片接口
  *
@@ -76,4 +113,5 @@ typedef void(^PROGRESS_BLOCK)(CGFloat percent,long long requestDidSendBytes);
  *	@param 	savekey 	savekey
  */
 - (void) uploadImageData:(NSData *)data savekey:(NSString *)savekey;
+
 @end

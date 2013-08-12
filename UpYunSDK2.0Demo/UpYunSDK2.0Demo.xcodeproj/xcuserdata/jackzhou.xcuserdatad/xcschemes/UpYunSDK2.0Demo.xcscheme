@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8E9D5D117B0C79800146D00"
-               BuildableName = "UpYunSDK2_0Demo.app"
+               BuildableName = "UpYunSDK2.0Demo.app"
                BlueprintName = "UpYunSDK2.0Demo"
                ReferencedContainer = "container:UpYunSDK2.0Demo.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B8E9D5D117B0C79800146D00"
-            BuildableName = "UpYunSDK2_0Demo.app"
+            BuildableName = "UpYunSDK2.0Demo.app"
             BlueprintName = "UpYunSDK2.0Demo"
             ReferencedContainer = "container:UpYunSDK2.0Demo.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B8E9D5D117B0C79800146D00"
-            BuildableName = "UpYunSDK2_0Demo.app"
+            BuildableName = "UpYunSDK2.0Demo.app"
             BlueprintName = "UpYunSDK2.0Demo"
             ReferencedContainer = "container:UpYunSDK2.0Demo.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B8E9D5D117B0C79800146D00"
-            BuildableName = "UpYunSDK2_0Demo.app"
+            BuildableName = "UpYunSDK2.0Demo.app"
             BlueprintName = "UpYunSDK2.0Demo"
             ReferencedContainer = "container:UpYunSDK2.0Demo.xcodeproj">
          </BuildableReference>

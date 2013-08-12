@@ -44,6 +44,7 @@
     {
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"" message:@"上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
+        NSLog(@"%@",data);
     };
     uy.failBlocker = ^(NSError * error)
     {
@@ -56,26 +57,61 @@
         [_pv setProgress:percent];
     };
     NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
-    NSString* img = [resourcePath stringByAppendingPathComponent:@"image.jpg"];
-    [uy uploadImagePath:img savekey:[self getSaveKey]];
+    
+    NSString* filePath = [resourcePath stringByAppendingPathComponent:@"FileTest.file"];
+    UIImage * image = [UIImage imageNamed:@"image.jpg"];
+    NSData * fileData = [NSData dataWithContentsOfFile:filePath];
+    /**
+     *	@brief	根据 文件路径 上传并由 服务器 生成savekey
+     *    saveKeyByServerType可用值:
+     *
+     *    SaveKeyByServerWithTime
+     *    SaveKeyByServerWithMD5
+     *    SaveKeyByServerWithRandom
+     *    SaveKeyByServerWithFileName
+     */
+    [uy uploadFile:filePath saveKeyByServerType:SaveKeyByServerWithTime];
+    
+    /**
+     *	@brief	根据 UIImage 上传并由 服务器 生成savekey
+     *    saveKeyByServerType可用值:
+     *
+     *    SaveKeyByServerWithTime
+     *    SaveKeyByServerWithMD5
+     *    SaveKeyByServerWithRandom
+     */
+    [uy uploadFile:image saveKeyByServerType:SaveKeyByServerWithTime];
+    
+    /**
+     *	@brief	根据 NSDate 上传并由服 务器生 成savekey
+     *    saveKeyByServerType可用值:
+     *
+     *    SaveKeyByServerWithTime
+     *    SaveKeyByServerWithMD5
+     *    SaveKeyByServerWithRandom
+     */
+    [uy uploadFile:fileData saveKeyByServerType:SaveKeyByServerWithTime];
+    
+    
+    /**
+     *	@brief	根据 文件路径 上传并由  开发者 成savekey
+     */
+    [uy uploadFile:filePath customSaveKey:[self getSaveKey]];
+    
+    /**
+     *	@brief	根据 UIImage 上传并由 开发者 生成savekey
+     */
+    [uy uploadFile:image customSaveKey:[self getSaveKey]];
+    
+    /**
+     *	@brief	根据 NSDate 上传并由 开发者 生成savekey
+     */
+    [uy uploadFile:fileData customSaveKey:[self getSaveKey]];
 }
 
 -(NSString * )getSaveKey {
-    
-    /**
-     *	@brief	方式1 由开发者生成saveKey
-     */
     NSDate *d = [NSDate date];
     return [NSString stringWithFormat:@"/%d/%d/%.0f.jpg",[self getYear:d],[self getMonth:d],[[NSDate date] timeIntervalSince1970]];
-    
-    /**
-     *	@brief	方式2 由服务器生成saveKey
-     */
-//    return [NSString stringWithFormat:@"/{year}/{mon}/{filename}{.suffix}"];
-    
-    /**
-     *	@brief	更多方式 参阅 http://wiki.upyun.com/index.php?title=Policy_%E5%86%85%E5%AE%B9%E8%AF%A6%E8%A7%A3
-     */
 }
 
 - (int)getYear:(NSDate *) date{
