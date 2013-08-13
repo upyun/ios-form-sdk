@@ -144,12 +144,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">uploadImage:</string>
+						<string key="label">uploadFile:</string>
 						<reference key="source" ref="258314480"/>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">8</int>
+					<int key="connectionID">12</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -212,7 +212,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">11</int>
+			<int key="maxID">12</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -220,13 +220,13 @@
 					<string key="className">ViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">uploadImage:</string>
+						<string key="NS.key.0">uploadFile:</string>
 						<string key="NS.object.0">id</string>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">uploadImage:</string>
+						<string key="NS.key.0">uploadFile:</string>
 						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">uploadImage:</string>
+							<string key="name">uploadFile:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</object>

@@ -38,14 +38,6 @@ typedef void(^SUCCESS_BLOCK)(id result);
 typedef void(^FAIL_BLOCK)(NSError * error);
 typedef void(^PROGRESS_BLOCK)(CGFloat percent,long long requestDidSendBytes);
 
-typedef enum
-{
-    SaveKeyByServerWithTime,//   由 服务器 根据时间 生成savekey
-    SaveKeyByServerWithMD5,//    由 服务器 根据上传文件MD5值 生成savekey
-    SaveKeyByServerWithRandom,// 由 服务器 生成随机值 生成savekey
-    SaveKeyByServerWithFileName//由 服务器 根据文件名 生成savekey
-}SaveKeyByServerType;
-
 @interface UpYun : NSObject
 
 @property (nonatomic, copy) NSString *bucket;
@@ -62,7 +54,6 @@ typedef enum
 
 @property (nonatomic, copy) PROGRESS_BLOCK  progressBlocker;
 
-@property (nonatomic, unsafe_unretained)SaveKeyByServerType autoSaveKeyType;
 
 /**********************/
 /**以下新增接口 建议使用**/
@@ -70,20 +61,9 @@ typedef enum
  *	@brief	上传文件
  *
  *	@param 	file 	文件信息 可用值：UIImage、NSData、NSString(文件路径)
- *
- *  @tag    当传入 file 类型 为UIImage或者NSData时 SaveKeyByServerType 中的 SaveKeyByServerWithFileName不可用
- *
- *	@param 	saveKeyByServerType 	由服务器生成savekey的方式
+ *	@param 	saveKey 	由开发者自定义的saveKey
  */
--(void)uploadFile:(id)file saveKeyByServerType:(SaveKeyByServerType)saveKeyByServerType;
-
-/**
- *	@brief	上传文件
- *
- *	@param 	file 	文件信息 可用值：UIImage、NSData、NSString(文件路径)
- *	@param 	customSaveKey 	由开发者自定义的saveKey
- */
--(void)uploadFile:(id)file customSaveKey:(NSString *)customSaveKey;
+-(void)uploadFile:(id)file saveKey:(NSString *)saveKey;
 
 /**以上新增接口 建议使用**/
 /**********************/              

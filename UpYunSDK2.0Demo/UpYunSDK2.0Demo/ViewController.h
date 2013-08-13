@@ -11,6 +11,6 @@
 
 @interface ViewController : UIViewController
 
-- (IBAction)uploadImage:(id)sender;
+- (IBAction)uploadFile:(id)sender;
 
 @end

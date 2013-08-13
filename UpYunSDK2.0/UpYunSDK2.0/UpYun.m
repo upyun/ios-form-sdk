@@ -10,10 +10,10 @@
 #define ERROR_DOMAIN @"upyun.com"
 #define DATE_STRING(expiresIn) [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + expiresIn]
 #define REQUEST_URL(bucket) [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/",API_DOMAIN,bucket]]
-#define CREAT_SAVE_KEY_BY_SERVER_WITH_TIME @"/{year}{mon}{day}{hour}{min}{sec}"
-#define CREAT_SAVE_KEY_BY_SERVER_WITH_MD5 @"/{filemd5}"
-#define CREAT_SAVE_KEY_BY_SERVER_WITH_RANDOM @"/{random}{random32}"
-#define CREAT_SAVE_KEY_BY_SERVER_WITH_FILENAME @"/{year}/{mon}/{filename}{.suffix}"
+
+#define SUB_SAVE_KEY_SUFFIX @"{.suffix}"
+#define SUB_SAVE_KEY_FILENAME @"{filename}"
+
 @implementation UpYun
 -(id)init
 {
@@ -25,14 +25,56 @@
 	return self;
 }
 
--(BOOL)needActionCheckWithData:(id)data
-           saveKeyByServerType:(SaveKeyByServerType)saveKeyByServerType
+- (void) uploadImage:(UIImage *)image savekey:(NSString *)savekey
 {
-    NSString * message = @"<SaveKeyByServerWithFileName>方式产生savekey,只支持file参数为文件path";
-    if(([data isKindOfClass:[UIImage class]] && saveKeyByServerType == SaveKeyByServerWithFileName) ||
-       ([data isKindOfClass:[NSData class]] && saveKeyByServerType == SaveKeyByServerWithFileName)){
+    if (![self checkSavekey:savekey]) {
+        return;
+    }
+    NSData *imageData = UIImagePNGRepresentation(image);
+    [self uploadImageData:imageData savekey:savekey];
+}
+
+- (void) uploadImagePath:(NSString *)path savekey:(NSString *)savekey
+{
+    [self uploadFilePath:path savekey:savekey];
+}
+
+- (void) uploadImageData:(NSData *)data savekey:(NSString *)savekey
+{
+    if (![self checkSavekey:savekey]) {
+        return;
+    }
+    [self uploadFileData:data savekey:savekey];
+}
+
+- (void) uploadFilePath:(NSString *)path savekey:(NSString *)savekey
+{
+    AFHTTPRequestOperation * operation = [self creatOperationWithSaveKey:savekey
+                                                                    data:nil
+                                                                filePath:path];
+    [operation start];
+}
+
+- (void) uploadFileData:(NSData *)data savekey:(NSString *)savekey
+{
+    AFHTTPRequestOperation * operation = [self creatOperationWithSaveKey:savekey
+                                                                    data:data
+                                                                filePath:nil];
+    [operation start];
+}
+
+- (BOOL)checkSavekey:(NSString *)string
+{
+    NSRange rangeSuffix;
+    rangeSuffix = [string rangeOfString:SUB_SAVE_KEY_SUFFIX];
+    NSRange rangeFileName;
+    rangeFileName = [string rangeOfString:SUB_SAVE_KEY_FILENAME];
+    if(rangeFileName.location != NSNotFound || rangeSuffix.location != NSNotFound)
+    {
+        NSString *  message = [NSString stringWithFormat:@"传入file为NSData或者UIImage时,不能使用%@或者%@方式生成savekey",
+                               SUB_SAVE_KEY_SUFFIX,SUB_SAVE_KEY_FILENAME];
         NSError *err = [NSError errorWithDomain:ERROR_DOMAIN
-                                           code:-99999
+                                           code:-1998
                                        userInfo:@{@"message":message}];
         if (_failBlocker) {
             _failBlocker(err);
@@ -42,76 +84,21 @@
     return YES;
 }
 
-- (void) uploadImage:(UIImage *)image savekey:(NSString *)savekey
+- (void)uploadFile:(id)file saveKey:(NSString *)saveKey
 {
-    NSData *imageData = UIImagePNGRepresentation(image);
-    [self uploadImageData:imageData savekey:savekey];
-}
-
-- (void) uploadImagePath:(NSString *)path savekey:(NSString *)savekey
-{
-    AFHTTPRequestOperation * operation = [self creatOperationWithSaveKey:savekey
-                                                                    data:nil
-                                                                filePath:path];
-    [operation start];
-}
-- (void) uploadImageData:(NSData *)data savekey:(NSString *)savekey
-{
-    AFHTTPRequestOperation * operation = [self creatOperationWithSaveKey:savekey
-                                                                    data:data
-                                                                filePath:nil];
-    [operation start];
-}
-
--(void)uploadFile:(id)file customSaveKey:(NSString *)customSaveKey
-{
-    if([file isKindOfClass:[UIImage class]]){
-        [self uploadImage:file savekey:customSaveKey];
-    }else if([file isKindOfClass:[NSData class]]) {
-        [self uploadImageData:file savekey:customSaveKey];
-    }else if([file isKindOfClass:[NSString class]]) {
-        [self uploadImagePath:file savekey:customSaveKey];
-    }else {
-        NSError *err = [NSError errorWithDomain:ERROR_DOMAIN
-                                           code:-99998
-                                       userInfo:@{@"message":@"传入参数类型错误"}];
-        if (_failBlocker) {
-            _failBlocker(err);
-        }
-    }
-}
-
-- (void)uploadFile:(id)file saveKeyByServerType:(SaveKeyByServerType)saveKeyByServerType
-{
-    if (![self needActionCheckWithData:file saveKeyByServerType:saveKeyByServerType]) {
+    if (![file isKindOfClass:[NSString class]] && ![self checkSavekey:saveKey])//非path传入的需要检查savekey
+    {
         return;
-    }
-    NSString * saveKey;
-    switch (saveKeyByServerType) {
-        case SaveKeyByServerWithFileName:
-            saveKey = CREAT_SAVE_KEY_BY_SERVER_WITH_FILENAME;
-            break;
-        case SaveKeyByServerWithMD5:
-            saveKey = CREAT_SAVE_KEY_BY_SERVER_WITH_MD5;
-            break;
-        case SaveKeyByServerWithRandom:
-            saveKey = CREAT_SAVE_KEY_BY_SERVER_WITH_RANDOM;
-            break;
-        case SaveKeyByServerWithTime:
-            saveKey = CREAT_SAVE_KEY_BY_SERVER_WITH_TIME;
-            break;
-        default:
-            break;
     }
     if([file isKindOfClass:[UIImage class]]){
         [self uploadImage:file savekey:saveKey];
     }else if([file isKindOfClass:[NSData class]]) {
-        [self uploadImageData:file savekey:saveKey];
+        [self uploadFileData:file savekey:saveKey];
     }else if([file isKindOfClass:[NSString class]]) {
-        [self uploadImagePath:file savekey:saveKey];
+        [self uploadFilePath:file savekey:saveKey];
     }else {
         NSError *err = [NSError errorWithDomain:ERROR_DOMAIN
-                                           code:-99998
+                                           code:-1999
                                        userInfo:@{@"message":@"传入参数类型错误"}];
         if (_failBlocker) {
             _failBlocker(err);

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B82A457417B9DAE100EA6AB2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82A457317B9DAE100EA6AB2 /* SystemConfiguration.framework */; };
+		B82A457717B9DB0800EA6AB2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82A457517B9DAF800EA6AB2 /* MobileCoreServices.framework */; };
 		B8E9D5D617B0C79800146D00 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E9D5D517B0C79800146D00 /* UIKit.framework */; };
 		B8E9D5D817B0C79800146D00 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E9D5D717B0C79800146D00 /* Foundation.framework */; };
 		B8E9D5DA17B0C79800146D00 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E9D5D917B0C79800146D00 /* CoreGraphics.framework */; };
@@ -33,10 +35,12 @@
 		B8E9D74717B0F76900146D00 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E9D73617B0F76900146D00 /* Base64.m */; };
 		B8E9D74817B0F76900146D00 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E9D73917B0F76900146D00 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B8E9D74917B0F76900146D00 /* NSData+MD5Digest.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E9D73C17B0F76900146D00 /* NSData+MD5Digest.m */; };
-		B8F54BFB17B8EDAD001D1CE9 /* FileTest.file in Resources */ = {isa = PBXBuildFile; fileRef = B8F54BFA17B8EDAD001D1CE9 /* FileTest.file */; };
+		B8F54BFB17B8EDAD001D1CE9 /* fileTest.file in Resources */ = {isa = PBXBuildFile; fileRef = B8F54BFA17B8EDAD001D1CE9 /* fileTest.file */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B82A457317B9DAE100EA6AB2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B82A457517B9DAF800EA6AB2 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		B8E9D5D217B0C79800146D00 /* UpYunSDK2.0Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UpYunSDK2.0Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E9D5D517B0C79800146D00 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B8E9D5D717B0C79800146D00 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -83,7 +87,7 @@
 		B8E9D73917B0F76900146D00 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		B8E9D73B17B0F76900146D00 /* NSData+MD5Digest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5Digest.h"; sourceTree = "<group>"; };
 		B8E9D73C17B0F76900146D00 /* NSData+MD5Digest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5Digest.m"; sourceTree = "<group>"; };
-		B8F54BFA17B8EDAD001D1CE9 /* FileTest.file */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FileTest.file; sourceTree = "<group>"; };
+		B8F54BFA17B8EDAD001D1CE9 /* fileTest.file */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fileTest.file; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B82A457717B9DB0800EA6AB2 /* MobileCoreServices.framework in Frameworks */,
+				B82A457417B9DAE100EA6AB2 /* SystemConfiguration.framework in Frameworks */,
 				B8E9D5D617B0C79800146D00 /* UIKit.framework in Frameworks */,
 				B8E9D5D817B0C79800146D00 /* Foundation.framework in Frameworks */,
 				B8E9D5DA17B0C79800146D00 /* CoreGraphics.framework in Frameworks */,
@@ -120,6 +126,8 @@
 		B8E9D5D417B0C79800146D00 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B82A457517B9DAF800EA6AB2 /* MobileCoreServices.framework */,
+				B82A457317B9DAE100EA6AB2 /* SystemConfiguration.framework */,
 				B8E9D5D517B0C79800146D00 /* UIKit.framework */,
 				B8E9D5D717B0C79800146D00 /* Foundation.framework */,
 				B8E9D5D917B0C79800146D00 /* CoreGraphics.framework */,
@@ -160,7 +168,7 @@
 		B8E9D68317B0CA6400146D00 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B8F54BFA17B8EDAD001D1CE9 /* FileTest.file */,
+				B8F54BFA17B8EDAD001D1CE9 /* fileTest.file */,
 				B8E9D68417B0CA6C00146D00 /* image.jpg */,
 			);
 			name = Resources;
@@ -300,7 +308,7 @@
 				B8E9D5EA17B0C79800146D00 /* Default@2x.png in Resources */,
 				B8E9D5EC17B0C79800146D00 /* Default-568h@2x.png in Resources */,
 				B8E9D68517B0CA6C00146D00 /* image.jpg in Resources */,
-				B8F54BFB17B8EDAD001D1CE9 /* FileTest.file in Resources */,
+				B8F54BFB17B8EDAD001D1CE9 /* fileTest.file in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
