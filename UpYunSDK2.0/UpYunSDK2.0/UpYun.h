@@ -41,7 +41,7 @@ typedef void(^PROGRESS_BLOCK)(CGFloat percent,long long requestDidSendBytes);
 
 @property (nonatomic, copy) NSString *bucket;
 
-@property (nonatomic, unsafe_unretained) NSTimeInterval expiresIn;
+@property (nonatomic, assign) NSTimeInterval expiresIn;
 
 @property (nonatomic, copy) NSMutableDictionary *params;
 
