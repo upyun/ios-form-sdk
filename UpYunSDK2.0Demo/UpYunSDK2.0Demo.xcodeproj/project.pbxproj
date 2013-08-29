@@ -36,6 +36,7 @@
 		B8E9D74817B0F76900146D00 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E9D73917B0F76900146D00 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B8E9D74917B0F76900146D00 /* NSData+MD5Digest.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E9D73C17B0F76900146D00 /* NSData+MD5Digest.m */; };
 		B8F54BFB17B8EDAD001D1CE9 /* fileTest.file in Resources */ = {isa = PBXBuildFile; fileRef = B8F54BFA17B8EDAD001D1CE9 /* fileTest.file */; };
+		B8F7277317CEF748001162D4 /* NSData+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F7277217CEF748001162D4 /* NSData+Utils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,8 @@
 		B8E9D73B17B0F76900146D00 /* NSData+MD5Digest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5Digest.h"; sourceTree = "<group>"; };
 		B8E9D73C17B0F76900146D00 /* NSData+MD5Digest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5Digest.m"; sourceTree = "<group>"; };
 		B8F54BFA17B8EDAD001D1CE9 /* fileTest.file */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fileTest.file; sourceTree = "<group>"; };
+		B8F7277117CEF748001162D4 /* NSData+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Utils.h"; sourceTree = "<group>"; };
+		B8F7277217CEF748001162D4 /* NSData+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Utils.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +192,7 @@
 		B8E9D71F17B0F76900146D00 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B8F7277017CEF748001162D4 /* Data */,
 				B8E9D72017B0F76900146D00 /* AFNetworking */,
 				B8E9D73417B0F76900146D00 /* Base64 */,
 				B8E9D73717B0F76900146D00 /* JSONKit */,
@@ -248,6 +252,15 @@
 				B8E9D73C17B0F76900146D00 /* NSData+MD5Digest.m */,
 			);
 			path = MD5;
+			sourceTree = "<group>";
+		};
+		B8F7277017CEF748001162D4 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B8F7277117CEF748001162D4 /* NSData+Utils.h */,
+				B8F7277217CEF748001162D4 /* NSData+Utils.m */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +348,7 @@
 				B8E9D74717B0F76900146D00 /* Base64.m in Sources */,
 				B8E9D74817B0F76900146D00 /* JSONKit.m in Sources */,
 				B8E9D74917B0F76900146D00 /* NSData+MD5Digest.m in Sources */,
+				B8F7277317CEF748001162D4 /* NSData+Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

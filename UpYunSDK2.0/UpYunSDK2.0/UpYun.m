@@ -11,7 +11,6 @@
 #define DATE_STRING(expiresIn) [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + expiresIn]
 #define REQUEST_URL(bucket) [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/",API_DOMAIN,bucket]]
 
-#define SUB_SAVE_KEY_SUFFIX @"{.suffix}"
 #define SUB_SAVE_KEY_FILENAME @"{filename}"
 
 @implementation UpYun
@@ -65,14 +64,21 @@
 
 - (BOOL)checkSavekey:(NSString *)string
 {
-    NSRange rangeSuffix;
-    rangeSuffix = [string rangeOfString:SUB_SAVE_KEY_SUFFIX];
     NSRange rangeFileName;
+    NSRange rangeFileNameOnDic;
     rangeFileName = [string rangeOfString:SUB_SAVE_KEY_FILENAME];
-    if(rangeFileName.location != NSNotFound || rangeSuffix.location != NSNotFound)
+    if ([_params objectForKey:@"save-key"]) {
+        rangeFileNameOnDic = [[_params objectForKey:@"save-key"]
+                                      rangeOfString:SUB_SAVE_KEY_FILENAME];
+    }else {
+        rangeFileNameOnDic.location = NSNotFound;
+    }
+    
+    
+    if(rangeFileName.location != NSNotFound || rangeFileNameOnDic.location != NSNotFound)
     {
-        NSString *  message = [NSString stringWithFormat:@"传入file为NSData或者UIImage时,不能使用%@或者%@方式生成savekey",
-                               SUB_SAVE_KEY_SUFFIX,SUB_SAVE_KEY_FILENAME];
+        NSString *  message = [NSString stringWithFormat:@"传入file为NSData或者UIImage时,不能使用%@方式生成savekey",
+                               SUB_SAVE_KEY_FILENAME];
         NSError *err = [NSError errorWithDomain:ERROR_DOMAIN
                                            code:-1998
                                        userInfo:@{@"message":message}];
@@ -110,7 +116,10 @@
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:self.bucket forKey:@"bucket"];
     [dic setObject:DATE_STRING(self.expiresIn) forKey:@"expiration"];
-    [dic setObject:savekey forKey:@"save-key"];
+    if (savekey && ![savekey isEqualToString:@""]) {
+        [dic setObject:savekey forKey:@"save-key"];
+    }
+
     if (self.params) {
         for (NSString *key in self.params.keyEnumerator) {
             [dic setObject:[self.params objectForKey:key] forKey:key];
@@ -134,7 +143,7 @@
     if (data) {
         [formData appendPartWithFileData:data
                                     name:@"file"
-                                fileName:@"file"
+                                fileName:[NSString stringWithFormat:@"file%@",[data detectImageSuffix]]
                                 mimeType:@"multipart/form-data"];
         return formData;
     }

@@ -12,14 +12,13 @@
 #import "Base64.h"
 #import "NSData+MD5Digest.h"
 #import "AFNetworking.h"
-
+#import "NSData+Utils.h"
 /**
  *	@brief 默认空间名（必填项），可在init之后修改bucket的值来更改
  */
 
 #error 必填项
 #define DEFAULT_BUCKET @""
-
 /**
  *	@brief	默认表单API功能密钥 （必填项），可在init之后修改passcode的值来更改
  */
@@ -60,7 +59,9 @@ typedef void(^PROGRESS_BLOCK)(CGFloat percent,long long requestDidSendBytes);
 /**
  *	@brief	上传文件
  *
- *	@param 	file 	文件信息 可用值：UIImage、NSData、NSString(文件路径)
+ *	@param 	file 	文件信息 可用值:  1、UIImage(会转成PNG格式，需要其他格式请先转成NSData传入 或者 传入文件路径)、
+                                    2、NSData、
+                                    3、NSString(文件路径)
  *	@param 	saveKey 	由开发者自定义的saveKey
  */
 -(void)uploadFile:(id)file saveKey:(NSString *)saveKey;
