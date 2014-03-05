@@ -16,13 +16,13 @@
  *	@brief 默认空间名（必填项），可在init之后修改bucket的值来更改
  */
 
-
-#define DEFAULT_BUCKET @"riding"
+#error "必填项"
+#define DEFAULT_BUCKET @""
 /**
  *	@brief	默认表单API功能密钥 （必填项），可在init之后修改passcode的值来更改
  */
-
-#define DEFAULT_PASSCODE @"9/Yx0ekhkWZeXSnjl+JWFZ0W9s8="
+#error "必填项"
+#define DEFAULT_PASSCODE @""
 
 /**
  *	@brief	默认当前上传授权的过期时间，单位为“秒” （必填项，较大文件需要较长时间)，可在init之后修改expiresIn的值来更改
