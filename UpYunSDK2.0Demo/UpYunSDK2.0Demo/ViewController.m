@@ -53,7 +53,7 @@
         [alert show];
         NSLog(@"%@",error);
     };
-    uy.progressBlocker = ^(CGFloat percent,long long requestDidSendBytes)
+    uy.progressBlocker = ^(CGFloat percent, NSUInteger requestDidSendBytes)
     {
         [_pv setProgress:percent];
     };

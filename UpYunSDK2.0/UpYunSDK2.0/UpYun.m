@@ -69,7 +69,7 @@
     rangeFileName = [string rangeOfString:SUB_SAVE_KEY_FILENAME];
     if ([_params objectForKey:@"save-key"]) {
         rangeFileNameOnDic = [[_params objectForKey:@"save-key"]
-                                      rangeOfString:SUB_SAVE_KEY_FILENAME];
+                              rangeOfString:SUB_SAVE_KEY_FILENAME];
     }else {
         rangeFileNameOnDic.location = NSNotFound;
     }
@@ -119,14 +119,15 @@
     if (savekey && ![savekey isEqualToString:@""]) {
         [dic setObject:savekey forKey:@"save-key"];
     }
-
+    
     if (self.params) {
         for (NSString *key in self.params.keyEnumerator) {
             [dic setObject:[self.params objectForKey:key] forKey:key];
         }
     }
-    NSString *json = [dic JSONString];
-    return [json base64EncodedString];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:NULL];
+    NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return [json base64String];
 }
 
 - (NSString *)getSignatureWithPolicy:(NSString *)policy
@@ -137,8 +138,8 @@
 }
 
 - (id <AFMultipartFormData>)setData:(id <AFMultipartFormData>)formData
-                              data:(NSData *)data
-                          filePath:(NSString *)filePath
+                               data:(NSData *)data
+                           filePath:(NSString *)filePath
 {
     if (data) {
         [formData appendPartWithFileData:data
@@ -151,10 +152,10 @@
         NSURL * url = [NSURL fileURLWithPath:filePath];
         NSString * fileName = [filePath lastPathComponent];
         fileName = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                                       (CFStringRef)fileName,
-                                                                       NULL,
-                                                                       (CFStringRef)@"!*'();:@&=+$,?%#[]",
-                                                                       kCFStringEncodingUTF8));
+                                                                                         (CFStringRef)fileName,
+                                                                                         NULL,
+                                                                                         (CFStringRef)@"!*'();:@&=+$,?%#[]",
+                                                                                         kCFStringEncodingUTF8));
         NSError * error = [[NSError alloc]init];
         [formData appendPartWithFileURL:url
                                    name:@"file"
@@ -167,51 +168,19 @@
     return nil;
 }
 
--(NSMutableURLRequest *)creatRequestWithSaveKey:(NSString *)saveKey
-                                           data:(NSData *)data
-                                       filePath:(NSString *)filePath
-{
-    NSString *policy = [self getPolicyWithSaveKey:saveKey];
-    NSString *signature = [self getSignatureWithPolicy:policy];
-    NSString * httpMethod = @"POST";
-    NSDictionary * parameDic = [NSDictionary dictionaryWithObjectsAndKeys:policy,@"policy",
-                                signature,@"signature", nil];
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:REQUEST_URL(self.bucket)];
-    __block UpYun * blockSelf = self;
-    NSMutableURLRequest *request = [httpClient multipartFormRequestWithMethod:httpMethod
-                                                                         path:nil
-                                                                   parameters:parameDic
-                                                    constructingBodyWithBlock:
-                                    ^(id <AFMultipartFormData>formData){
-                                        [blockSelf setData:formData data:data filePath:filePath];
-                                    }];
-    [request setHTTPMethod:httpMethod];
-    return  request;
-}
-
 - (AFHTTPRequestOperation *)creatOperationWithSaveKey:(NSString *)saveKey
-                                                data:(NSData *)data
-                                            filePath:(NSString *)filePath
-{
-    NSMutableURLRequest * request = [self creatRequestWithSaveKey:saveKey
-                                                             data:data
-                                                         filePath:filePath];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    
-    void(^progress)(NSUInteger bytesWritten,
-                    long long totalBytesWritten,
-                    long long totalBytesExpectedToWrite)=
-    ^(NSUInteger bytesWritten,long long totalBytesWritten,long long totalBytesExpectedToWrite)
-    {
+                                                 data:(NSData *)data
+                                             filePath:(NSString *)filePath{
+    //进度回调
+    void(^progress)(NSUInteger bytesWritten,NSInteger totalBytesWritten,NSInteger totalBytesExpectedToWrite) = ^(NSUInteger bytesWritten,NSInteger totalBytesWritten,NSInteger totalBytesExpectedToWrite){
         CGFloat percent = totalBytesWritten/(float)totalBytesExpectedToWrite;
         if (_progressBlocker) {
             _progressBlocker(percent,totalBytesWritten);
         }
     };
-    void(^success)(AFHTTPRequestOperation *operation, id responseObject)=
-    ^(AFHTTPRequestOperation *operation, id responseObject)
-    {
-        NSDictionary * jsonDic = [responseObject objectFromJSONData];
+    //成功回调
+    void(^success)(AFHTTPRequestOperation *operation, id responseObject)= ^(AFHTTPRequestOperation *operation, id responseObject){
+        NSDictionary * jsonDic = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingAllowFragments error:NULL];
         NSString *message = [jsonDic objectForKey:@"message"];
         if ([@"ok" isEqualToString:message]) {
             if (_successBlocker) {
@@ -226,19 +195,77 @@
             }
         }
     };
-    
-    void(^fail)(AFHTTPRequestOperation * opetation,NSError * error)=
-    ^(AFHTTPRequestOperation * opetation,NSError * error)
-    {
+    //失败回调
+    void(^fail)(AFHTTPRequestOperation * opetation,NSError * error)= ^(AFHTTPRequestOperation * opetation,NSError * error){
         if (_failBlocker) {
             _failBlocker(error);
         }
     };
     
-    [operation setCompletionBlockWithSuccess:success
-                                     failure:fail];
+    NSString *policy = [self getPolicyWithSaveKey:saveKey];
+    NSString *signature = [self getSignatureWithPolicy:policy];
+    NSDictionary * parameDic = @{@"policy":policy, @"signature":signature};
+    
+    __block UpYun * blockSelf = self;
+    AFHTTPRequestOperationManager *httpManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:REQUEST_URL(self.bucket)];
+    httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    AFHTTPRequestOperation *operation = [httpManager POST:@"" parameters:parameDic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [blockSelf setData:formData data:data filePath:filePath];
+        
+    } success:success failure:fail];
+    
     [operation setUploadProgressBlock:progress];
+    
     return operation;
 }
+/*- (NSURLSessionTask *)aacreatOperationWithSaveKey:(NSString *)saveKey
+                                                 data:(NSData *)data
+                                             filePath:(NSString *)filePath{
+    //进度回调
+    void(^progress)(NSUInteger bytesWritten,NSInteger totalBytesWritten,NSInteger totalBytesExpectedToWrite) = ^(NSUInteger bytesWritten,NSInteger totalBytesWritten,NSInteger totalBytesExpectedToWrite){
+        CGFloat percent = totalBytesWritten/(float)totalBytesExpectedToWrite;
+        if (_progressBlocker) {
+            _progressBlocker(percent,totalBytesWritten);
+        }
+    };
+    //成功回调
+    void(^success)(NSURLSessionDataTask *operation, id responseObject)= ^(NSURLSessionDataTask *operation, id responseObject){
+        NSDictionary * jsonDic = responseObject;
+        NSString *message = [jsonDic objectForKey:@"message"];
+        if ([@"ok" isEqualToString:message]) {
+            if (_successBlocker) {
+                _successBlocker(jsonDic);
+            }
+        } else {
+            NSError *err = [NSError errorWithDomain:ERROR_DOMAIN
+                                               code:[[jsonDic objectForKey:@"code"] intValue]
+                                           userInfo:jsonDic];
+            if (_failBlocker) {
+                _failBlocker(err);
+            }
+        }
+    };
+    //失败回调
+    void(^fail)(NSURLSessionDataTask * opetation,NSError * error)= ^(NSURLSessionDataTask * opetation,NSError * error){
+        if (_failBlocker) {
+            _failBlocker(error);
+        }
+    };
+    
+    NSString *policy = [self getPolicyWithSaveKey:saveKey];
+    NSString *signature = [self getSignatureWithPolicy:policy];
+    NSDictionary * parameDic = @{@"policy":policy, @"signature":signature};
+    
+    __block UpYun * blockSelf = self;
+    AFHTTPSessionManager *httpManager = [[AFHTTPSessionManager alloc] initWithBaseURL:REQUEST_URL(self.bucket)];
+    httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSURLSessionTask *task = [httpManager POST:@"" parameters:parameDic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [blockSelf setData:formData data:data filePath:filePath];
+    } success:success failure:fail];
+    
+    return task;
+}*/
 
 @end

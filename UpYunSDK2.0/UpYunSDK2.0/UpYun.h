@@ -8,22 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "JSONKit.h"
-#import "Base64.h"
-#import "NSData+MD5Digest.h"
-#import "AFNetworking.h"
+#import <Base64/MF_Base64Additions.h>
+#import <NSData+MD5Digest/NSData+MD5Digest.h>
+#import <AFNetworking/AFNetworking.h>
 #import "NSData+Utils.h"
 /**
  *	@brief 默认空间名（必填项），可在init之后修改bucket的值来更改
  */
 
-#error 必填项
-#define DEFAULT_BUCKET @""
+
+#define DEFAULT_BUCKET @"riding"
 /**
  *	@brief	默认表单API功能密钥 （必填项），可在init之后修改passcode的值来更改
  */
-#error 必填项
-#define DEFAULT_PASSCODE @""
+
+#define DEFAULT_PASSCODE @"9/Yx0ekhkWZeXSnjl+JWFZ0W9s8="
 
 /**
  *	@brief	默认当前上传授权的过期时间，单位为“秒” （必填项，较大文件需要较长时间)，可在init之后修改expiresIn的值来更改
@@ -35,7 +34,7 @@
 
 typedef void(^SUCCESS_BLOCK)(id result);
 typedef void(^FAIL_BLOCK)(NSError * error);
-typedef void(^PROGRESS_BLOCK)(CGFloat percent,long long requestDidSendBytes);
+typedef void(^PROGRESS_BLOCK)(CGFloat percent,NSUInteger requestDidSendBytes);
 
 @interface UpYun : NSObject
 
@@ -60,14 +59,14 @@ typedef void(^PROGRESS_BLOCK)(CGFloat percent,long long requestDidSendBytes);
  *	@brief	上传文件
  *
  *	@param 	file 	文件信息 可用值:  1、UIImage(会转成PNG格式，需要其他格式请先转成NSData传入 或者 传入文件路径)、
-                                    2、NSData、
-                                    3、NSString(文件路径)
+ 2、NSData、
+ 3、NSString(文件路径)
  *	@param 	saveKey 	由开发者自定义的saveKey
  */
 -(void)uploadFile:(id)file saveKey:(NSString *)saveKey;
 
 /**以上新增接口 建议使用**/
-/**********************/              
+/**********************/
 
 
 /**
