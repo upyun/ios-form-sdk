@@ -16,12 +16,10 @@
  *	@brief 默认空间名（必填项），可在init之后修改bucket的值来更改
  */
 
-#error "必填项"
 #define DEFAULT_BUCKET @""
 /**
  *	@brief	默认表单API功能密钥 （必填项），可在init之后修改passcode的值来更改
  */
-#error "必填项"
 #define DEFAULT_PASSCODE @""
 
 /**
