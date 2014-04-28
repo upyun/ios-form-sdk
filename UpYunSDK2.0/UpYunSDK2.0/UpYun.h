@@ -32,7 +32,7 @@
 
 typedef void(^SUCCESS_BLOCK)(id result);
 typedef void(^FAIL_BLOCK)(NSError * error);
-typedef void(^PROGRESS_BLOCK)(CGFloat percent,NSUInteger requestDidSendBytes);
+typedef void(^PROGRESS_BLOCK)(CGFloat percent,long long requestDidSendBytes);
 
 @interface UpYun : NSObject
 

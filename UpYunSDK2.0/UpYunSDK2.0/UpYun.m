@@ -172,7 +172,7 @@
                                                  data:(NSData *)data
                                              filePath:(NSString *)filePath{
     //进度回调
-    void(^progress)(NSUInteger bytesWritten,NSInteger totalBytesWritten,NSInteger totalBytesExpectedToWrite) = ^(NSUInteger bytesWritten,NSInteger totalBytesWritten,NSInteger totalBytesExpectedToWrite){
+    void(^progress)(NSUInteger bytesWritten,long long totalBytesWritten,long long totalBytesExpectedToWrite) = ^(NSUInteger bytesWritten,long long totalBytesWritten,long long totalBytesExpectedToWrite){
         CGFloat percent = totalBytesWritten/(float)totalBytesExpectedToWrite;
         if (_progressBlocker) {
             _progressBlocker(percent,totalBytesWritten);
