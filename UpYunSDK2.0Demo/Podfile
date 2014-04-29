@@ -1,0 +1,5 @@
+platform :ios, "6.0"
+
+pod 'NSData+MD5Digest'
+pod 'Base64'
+pod 'AFNetworking'
