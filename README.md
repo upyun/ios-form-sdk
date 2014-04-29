@@ -3,7 +3,7 @@
 又拍云存储iOS SDK，基于 [又拍云存储 表单 API接口] (http://wiki.upyun.com/index.php?title=%E8%A1%A8%E5%8D%95API%E6%8E%A5%E5%8F%A3) 开发。
 ## 使用说明
 ### 要求
-iOS5.0及以上版本，ARC模式
+iOS6.0及以上版本，ARC模式
 ### 参数设置
 * **DEFAULT_BUCKET** : 默认空间名（必填项）
 * **DEFAULT_PASSCODE** : 默认表单API功能密钥 （必填项）
