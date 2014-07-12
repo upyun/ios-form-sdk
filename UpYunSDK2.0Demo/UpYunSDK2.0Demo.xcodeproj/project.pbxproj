@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		12ACC1F6FE9A491A937909BE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A16AA88306D4065A9920C45 /* libPods.a */; };
+		3F8545191970DA4600FBF642 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F8545181970DA4600FBF642 /* image.jpg */; };
+		3F85451B1970DCDA00FBF642 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F85451A1970DCDA00FBF642 /* 1.png */; };
+		3F85451D1970DD1B00FBF642 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F85451C1970DD1B00FBF642 /* 2.png */; };
 		88BAB33C18C6F66B00426A17 /* UpYun.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BAB33618C6F66B00426A17 /* UpYun.m */; };
 		88BAB33D18C6F66B00426A17 /* NSData+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BAB33B18C6F66B00426A17 /* NSData+Utils.m */; };
 		B82A457417B9DAE100EA6AB2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82A457317B9DAE100EA6AB2 /* SystemConfiguration.framework */; };
@@ -22,7 +25,6 @@
 		B8E9D5EA17B0C79800146D00 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8E9D5E917B0C79800146D00 /* Default@2x.png */; };
 		B8E9D5EC17B0C79800146D00 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8E9D5EB17B0C79800146D00 /* Default-568h@2x.png */; };
 		B8E9D68217B0C9E400146D00 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E9D67F17B0C94500146D00 /* ViewController.m */; };
-		B8E9D68517B0CA6C00146D00 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8E9D68417B0CA6C00146D00 /* image.jpg */; };
 		B8E9D68617B0CB2900146D00 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8E9D68017B0C94500146D00 /* ViewController_iPhone.xib */; };
 		B8E9D68717B0CB2900146D00 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8E9D68117B0C94500146D00 /* ViewController_iPad.xib */; };
 		B8F54BFB17B8EDAD001D1CE9 /* fileTest.file in Resources */ = {isa = PBXBuildFile; fileRef = B8F54BFA17B8EDAD001D1CE9 /* fileTest.file */; };
@@ -30,6 +32,9 @@
 
 /* Begin PBXFileReference section */
 		1F8679ED81E54B918026F547 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		3F8545181970DA4600FBF642 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
+		3F85451A1970DCDA00FBF642 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		3F85451C1970DD1B00FBF642 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		88BAB33518C6F66B00426A17 /* UpYun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpYun.h; sourceTree = "<group>"; };
 		88BAB33618C6F66B00426A17 /* UpYun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpYun.m; sourceTree = "<group>"; };
 		88BAB33718C6F66B00426A17 /* UpYunSDK2.0-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UpYunSDK2.0-Prefix.pch"; sourceTree = "<group>"; };
@@ -55,7 +60,6 @@
 		B8E9D67F17B0C94500146D00 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B8E9D68017B0C94500146D00 /* ViewController_iPhone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController_iPhone.xib; sourceTree = "<group>"; };
 		B8E9D68117B0C94500146D00 /* ViewController_iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController_iPad.xib; sourceTree = "<group>"; };
-		B8E9D68417B0CA6C00146D00 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		B8F54BFA17B8EDAD001D1CE9 /* fileTest.file */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fileTest.file; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,7 +174,9 @@
 			isa = PBXGroup;
 			children = (
 				B8F54BFA17B8EDAD001D1CE9 /* fileTest.file */,
-				B8E9D68417B0CA6C00146D00 /* image.jpg */,
+				3F85451C1970DD1B00FBF642 /* 2.png */,
+				3F8545181970DA4600FBF642 /* image.jpg */,
+				3F85451A1970DCDA00FBF642 /* 1.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -228,13 +234,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F85451B1970DCDA00FBF642 /* 1.png in Resources */,
 				B8E9D68617B0CB2900146D00 /* ViewController_iPhone.xib in Resources */,
 				B8E9D68717B0CB2900146D00 /* ViewController_iPad.xib in Resources */,
+				3F85451D1970DD1B00FBF642 /* 2.png in Resources */,
 				B8E9D5E017B0C79800146D00 /* InfoPlist.strings in Resources */,
+				3F8545191970DA4600FBF642 /* image.jpg in Resources */,
 				B8E9D5E817B0C79800146D00 /* Default.png in Resources */,
 				B8E9D5EA17B0C79800146D00 /* Default@2x.png in Resources */,
 				B8E9D5EC17B0C79800146D00 /* Default-568h@2x.png in Resources */,
-				B8E9D68517B0CA6C00146D00 /* image.jpg in Resources */,
 				B8F54BFB17B8EDAD001D1CE9 /* fileTest.file in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

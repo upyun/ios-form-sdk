@@ -16,11 +16,11 @@
  *	@brief 默认空间名（必填项），可在init之后修改bucket的值来更改
  */
 
-#define DEFAULT_BUCKET @""
+#define DEFAULT_BUCKET @"starshow111"
 /**
  *	@brief	默认表单API功能密钥 （必填项），可在init之后修改passcode的值来更改
  */
-#define DEFAULT_PASSCODE @""
+#define DEFAULT_PASSCODE @"hLjoN5Q4UhmLM6nKfZlgQHVTZB8="
 
 /**
  *	@brief	默认当前上传授权的过期时间，单位为“秒” （必填项，较大文件需要较长时间)，可在init之后修改expiresIn的值来更改

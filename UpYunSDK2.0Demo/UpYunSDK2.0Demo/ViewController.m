@@ -18,12 +18,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy/MMdd/HH"];
+    
+    //用[NSDate date]可以获取系统当前时间
+    NSString *currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
+    
+    //输出格式为：2010-10-27 10:22:13
+    NSLog(@"%@",currentDateStr);
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
     // Release any retained subviews of the main view.
 }
 
@@ -62,7 +75,7 @@
     /**
      *	@brief	根据 UIImage 上传
      */
-    UIImage * image = [UIImage imageNamed:@"image.jpg"];
+    UIImage * image = [UIImage imageNamed:@"1.png"];
     [uy uploadFile:image saveKey:[self getSaveKey]];
     /**
      *	@brief	根据 文件路径 上传
@@ -85,8 +98,18 @@
     /**
      *	@brief	方式1 由开发者生成saveKey
      */
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy/MMdd/HH"];
+    
+    //用[NSDate date]可以获取系统当前时间
+    NSString *currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
+
+    
     NSDate *d = [NSDate date];
-    return [NSString stringWithFormat:@"/%d/%d/%.0f.jpg",[self getYear:d],[self getMonth:d],[[NSDate date] timeIntervalSince1970]];
+    return [NSString stringWithFormat:@"/%@/%.0f.jpg",currentDateStr,[[NSDate date] timeIntervalSince1970]];
     
     /**
      *	@brief	方式2 由服务器生成saveKey
