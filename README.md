@@ -1,6 +1,6 @@
 # 又拍云iOS SDK
 
-又拍云存储iOS SDK，基于 [又拍云存储 表单 API接口] (http://wiki.upyun.com/index.php?title=%E8%A1%A8%E5%8D%95API%E6%8E%A5%E5%8F%A3) 开发。
+又拍云存储iOS SDK，基于 [又拍云存储 表单 API接口] (http://docs.upyun.com/api/form_api/) 开发。
 ## 使用说明
 ### 要求
 iOS6.0及以上版本，ARC模式
@@ -45,7 +45,7 @@ uy.progressBlocker = ^(CGFloat percent,long long requestDidSendBytes){
 * 由开发者传入关键key由服务器生成saveKey:
   * 比如`/{year}/{mon}/{filename}{.suffix}`表示以上传文件完成时服务器年（`{year}`）、月（`{mon}`）最为目录，以传入的文件名（`{filename}`）及后缀（`{.suffix}`）作为文件名保存
   * **特别的** 当参数`file`以`UIImage`、`NSData`类型传入时，`saveKey`不能带有`{filename}`
-  * 其他服务器支持的关键key详见 [save-key详细说明](http://wiki.upyun.com/index.php?title=%E8%A1%A8%E5%8D%95API%E6%8E%A5%E5%8F%A3#.E6.B3.A81.EF.BC.9Asave-key.E8.AF.A6.E7.BB.86.E8.AF.B4.E6.98.8E) 
+  * 其他服务器支持的关键key详见 [save-key详细说明](http://docs.upyun.com/api/form_api/#_3) 
 
 #####3、`successBlocker` 上传成功回调
 * 回调中的参数：
@@ -64,4 +64,4 @@ uy.progressBlocker = ^(CGFloat percent,long long requestDidSendBytes){
 ### 错误代码
 * `-1998`: 参数`file`以`UIImage`、`NSData`类型传入时，`saveKey`带有`{filename}`
 * `-1999`: 参数`file`以`UIImage`、`NSData`、`NSString`外的类型传入
-* 其他错误代码详见 [表单API错误代码表](http://wiki.upyun.com/index.php?title=%E8%A1%A8%E5%8D%95API%E6%8E%A5%E5%8F%A3#.E8.A1.A8.E5.8D.95API.E9.94.99.E8.AF.AF.E4.BB.A3.E7.A0.81.E8.A1.A8) 
+* 其他错误代码详见 [表单API错误代码表](http://docs.upyun.com/api/form_api/#api_2) 
