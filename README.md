@@ -1,3 +1,4 @@
+#这个 SDK 将不再维护, 请使用[新版SDK](https://github.com/upyun/ios-sdk)
 # 又拍云iOS SDK
 
 又拍云存储iOS SDK，基于 [又拍云存储 表单 API接口] (http://wiki.upyun.com/index.php?title=%E8%A1%A8%E5%8D%95API%E6%8E%A5%E5%8F%A3) 开发。
